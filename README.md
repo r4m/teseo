@@ -5,11 +5,9 @@ This application allows to track multiple agents in a indoor wireless sensor net
 
 This project was originally hosted at [Sourceforge](http://sourceforge.net/projects/teseus/).
 
-
-
 ## Getting Started
 
-The programming of the whole system has been addressed through NesC, via [TinyOS 2.1.0](http://docs.tinyos.net/index.php/Installing_TinyOS_2.1), and Java 6. NesC has become indispensable for low-level management of individual agents while Java was chosen to provide the user with a simple and intuitive graphical interface with whom showing and coordinating the localization and tracking.
+The programming of the whole system has been addressed through [NesC](http://nescc.sourceforge.net), via [TinyOS 2.1.0](http://docs.tinyos.net/index.php/Installing_TinyOS_2.1), and Java 6. NesC has become indispensable for low-level management of individual agents while Java was chosen to provide the user with a simple and intuitive graphical interface with whom showing and coordinating the localization and tracking.
 
 A detailed explanation of the TinyOS and Java applications can be found in the journal paper [*Teseo: a multi-agent tracking application in 
 wireless sensor networks*](http://www.naun.org/multimedia/UPress/saed/2014-108.pdf) published in the International Journal of Systems Applications, Engineering & Development, Issue 1, Volume 7, 2013.
@@ -18,34 +16,21 @@ In the following it is briefly explained how to setup the system.
 
 ### Mobile agent programming
 
-The first thing to is to ensure that the mobile agent is the only one connected to the USB port of the notebook/pc. Then, to install the module `MobileNodeP.nc`, dalla cartella che contiene il \verb|Makefile| relativo a \verb|MobileNodeC.nc|  basta eseguire il comando
-\begin{verbatim}
-make tmote install.100
-\end{verbatim}
-verrà compilata una immagine per la piattaforma \verb|telosb| e installata nel nodo mobile assegnando ad esso l'ID $100$.
+The first thing to do is to ensure that the mobile agent is the only one connected to the USB port of the computer. Then, to install the module `MobileNodeP.nc`, you have to run the command
 
-\subsubsection{Programmazione dei nodi fissi}
-Per installare il modulo \verb|AnchorNodeP.nc| su più nodi fissi contemporaneamente si può agire direttamente dalla \emph{base station}. Altrimenti, procedendo in maniera manuale come per il nodo mobile, può essere utilizzato lo script denominato \verb|sensnet-load|:
-\begin{verbatim}
-#!/bin/sh
-motelist -c | while read line
-do
-	code=`echo $line | cut -d "," -f 1`
-	dev=`echo $line | cut -d "," -f 2`
-	cat sensnet-topology | while read t_line
-		do
-			t_address=`echo $t_line |cut -d "," -f 1`
-			t_code=`echo $t_line |cut -d "," -f 2`
-			if [ $code = $t_code ];
-			then
-				echo "$code, $t_address, $dev"
-				make telosb reinstall,$t_address bsl,$dev >/dev/null 2>/dev/null &
-			fi	
-		done
-done
-\end{verbatim}
-Questo \emph{script} confronta quanto restituito dal comando \verb|motelist| con quanto contenuto nel file \verb|sensnet-topology|.
-Il file \verb|sensnet-topology| è un file di testo che contiene, riga per riga, l'ID e la \verb|Reference| del mote secondo tale sintassi: \verb|<ID>,<Reference>|. Lo script dunque non fa altro che reinstallare il software in tutti quei nodi fissi che sono presenti si nella \verb|motelist| che nell'elenco \verb|sensnet-topology|.
+	make tmote install.100
+
+from the folder `devices-sensors\MobileNode`, such that the corresponding `Makefile` is loaded. A compiled image for the `telosb` is installed in the mobile agent with assigned ID 100.
+
+### Fixed agents programming
+
+To install the module `AnchorNodeP.nc` into more than one fixed agent at the same time you can run the `sensnet-load` script located in the `\devices-sensors\FixedNode` directory. The scrpit compare the results of the `motelist` command with the content of  the `sensnet-topology` file.
+The `sensnet-topology` text file contains, row by row, the ID and the reference of the agent with this convention: `<ID>,<Reference>`.
+
+### Start-up of the GUI
+
+The `make.sh` script sets the`CLASSPATH` and invokes the `Makefile` to compile the Java source code. Then you can run the Java application via the `run.sh` bash script.
+
 
 ## Additional information
 
