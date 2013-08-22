@@ -1,0 +1,25 @@
+#!/bin/sh
+echo "Loading the software on the net..."
+
+motelist -c | while read line
+do
+	#[ -z "$line" ] && exit
+	if [ "$line" = "No devices found." ]
+	then
+	  echo "Devices not connected."
+	  exit
+	fi
+	code=`echo $line | cut -d "," -f 1`
+	dev=`echo $line | cut -d "," -f 2`
+	cat ../sensnet-topology | while read t_line
+		do
+			t_address=`echo $t_line |cut -d "," -f 1`
+			t_code=`echo $t_line |cut -d "," -f 2`
+			if [ $code = $t_code ];
+			then
+				echo "$code, $t_address, $dev"
+				make telosb reinstall,$t_address bsl,$dev >/dev/null 2>/dev/null &
+			fi
+			
+		done
+done
