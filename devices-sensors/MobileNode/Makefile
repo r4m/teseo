@@ -1,0 +1,4 @@
+COMPONENT=MobileNodeC
+
+include $(MAKERULES)
+

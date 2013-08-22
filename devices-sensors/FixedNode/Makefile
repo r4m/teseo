@@ -1,0 +1,3 @@
+COMPONENT=FixedNodeC
+
+include $(MAKERULES)

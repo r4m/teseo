@@ -1,0 +1,28 @@
+# Mappa dimensioni 640 x 480. [file]
+maps/NavLab.jpg
+
+# Posizione dell'origine degli assi. [x (pxl)] [y (pxl)]
+0 0
+
+# Scala 1 (pxl) : ? (m) nella mappa. [x (m)] [y (m)]
+0.0215 0.0215
+
+# Nodi Ancora. [id] [x (m)] [y (m)] [z (m)]
+# Prima riga (Corridoio)
+26 03.9271 -0.4142 2.35    
+27 06.1271 -0.4142 2.35
+28 08.5271 -0.4142 2.35
+29 11.2771 -0.4142 2.35
+# Seconda riga (Laboratorio Navlab linea 1)
+17 02.0271 -3.2142 2.88
+18 05.1971 -3.2142 2.88
+19 08.4371 -3.2142 2.88
+20 11.5271 -3.2142 2.88
+# Terza riga (Laboratorio Navlab linea 2)
+01 07.0671 -5.3142 2.88
+02 10.2071 -5.3142 2.88
+# Quarta riga (Laboratorio Navlab linea 3)
+09 02.0271 -7.9142 2.88
+10 05.1971 -7.9142 2.88
+11 08.4371 -7.9142 2.88
+12 11.5271 -7.9142 2.88

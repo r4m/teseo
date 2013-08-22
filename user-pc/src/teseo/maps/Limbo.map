@@ -1,0 +1,13 @@
+# Mappa dimensioni 640 x 480. [file]
+maps/Limbo.jpg
+
+# Posizione dell'origine degli assi. [x (pxl)] [y (pxl)]
+250 50
+
+# Scala 1 (pxl) : ? (m) nella mappa. [x (m)] [y (m)]
+0.01 0.01
+
+# Nodi Ancora. [id] [x (m)] [y (m)] [z (m)]
+04 -1.7 0.0 0.82
+02 1.5 -0.55 0.77
+83 0.0 -2.50 0.58
